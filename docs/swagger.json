@@ -1,0 +1,201 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "A RESTful API boilerplate with Gin Framework, PostgreSQL, Redis and JWT authentication",
+        "title": "GOLANG GIN RESTFULL API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/v1/": {
+            "get": {
+                "tag": ["Hello Golang"],
+
+                "description": "just show the hellp",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": ["application/json"],
+                "tags": ["Hello GO"],
+                "summary": "Hello GO summary",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+
+        },
+        "/v1/user": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Create user",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "User created",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+
+                }
+            },
+            "get": {
+                "tags": ["User"],
+                "summary": "Get all the users",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/GetAllUsers"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/user/{id}": {
+            "put": {
+                "tags": ["User"],
+                "summary": "Update user",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "uint"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User updated",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+
+            "patch": {
+                "tags": ["User"],
+                "summary": "Update user with patch method",
+                "description": "This method just update the partial field of user",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "uint"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User updated with partial",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+
+            "delete": {
+                "tags": ["User"],
+                "summary": "Delete user",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "uint"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User deleted"
+                    }
+                }
+            }
+        }
+
+    },
+    "definitions": {
+        "CreateUser": {
+            "type": "object",
+            "required": ["name", "email"],
+            "properties": {
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "age": { "type": "integer" },
+                "avatar_url": { "type": "string" }
+            }
+        },
+
+        "UpdateUser": {
+            "type": "object",
+            "properties": {
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "age": { "type": "integer" },
+                "avatar_url": { "type": "string" }
+            }
+        },
+
+        "User": {
+            "type": "object",
+            "properties": {
+                "id": { "type": "integer" },
+                "name": { "type": "string" },
+                "email": { "type": "string" },
+                "age": { "type": "integer" },
+                "avatar_url": { "type": "string" }
+            }
+        },
+
+        "GetAllUsers": {
+            "type": "array"
+        }
+    }
+
+}

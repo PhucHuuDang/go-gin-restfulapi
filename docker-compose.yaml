@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  database:
+    container_name: database
+    image: postgres:14.19
+    restart: always
+    entrypoint:
+      - DB_URL=DB_URL
+    ports:
+      - 5432:5432
+    volumes:
+      - db:var/lib/postgresql/data

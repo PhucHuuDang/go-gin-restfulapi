@@ -1,0 +1,12 @@
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: A RESTful API boilerplate with Gin Framework, PostgreSQL, Redis and
+    JWT authentication
+  termsOfService: http://swagger.io/terms/
+  title: GOLANG GIN RESTFULL API
+  version: "1.0"
+paths: {}
+swagger: "2.0"
